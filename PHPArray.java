@@ -90,7 +90,8 @@ public class PHPArray<V> implements Iterable<V> {
 
       if (entries[i].key.equals(key)) {
 
-        entries[i].value = val; return;
+        entries[i].value = val;
+        return;
 
       }
 
@@ -101,15 +102,8 @@ public class PHPArray<V> implements Iterable<V> {
     entries[i] = new Node<V>(key, val);
 
     if (tail != null)
-
-      tail.next = entries[i];
-
-    // make the new entry the new tail
-
+    tail.next = entries[i];
     tail = entries[i];
-
-    // if head is null make it point to the tail
-
     if (head == null)
 
       head = tail;
@@ -158,22 +152,12 @@ public class PHPArray<V> implements Iterable<V> {
 
     PHPArray<V> temp = new PHPArray<V>(capacity);
 
-// use MyIterator to iterate
-
-    MyIterator iter = new MyIterator();
-
-    while (iter.hasNext()) {
-
-      //use MyIterator's current node to access the key and value
-
-      temp.put(iter.current.key, iter.current.value);
-
-      //point to next node
-
-      iter.next();
-
-    }
-
+for(int i=0;i<M;i++)
+{
+ if(entries[i]!=null){
+   temp.put(entries[i].key,entries[i].value);
+ }
+}
 
 
     // TODO: reinsert the entries from this into temp in original FIFO order
